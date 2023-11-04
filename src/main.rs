@@ -1,4 +1,4 @@
-use nnoq::*;
+use nyaya::*;
 use std::fs;
 
 fn main() {
@@ -20,7 +20,7 @@ fn help() -> ! {
     println!(
         "usage: {} <filename>",
         std::env::current_exe()
-            .unwrap_or_else(|_| "nnoq".into())
+            .unwrap_or_else(|_| "nyaya".into())
             .display()
     );
     std::process::exit(-1);

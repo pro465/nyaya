@@ -131,7 +131,7 @@ impl Verifier {
         let mut res = a.pat.clone();
         for call in proof.clone() {
             let rule = &self.rules[&call.f];
-            let hyp = index(&res, &call.idxs);
+            let hyp = index(&res, &call.idxs, call.loc)?;
             let mut vars = HashMap::new();
             if rule.pat.len() != hyp.len() {
                 return Err(Error {
@@ -163,6 +163,14 @@ impl Verifier {
             }
 
             res.push(new);
+        }
+
+        if res.is_empty() {
+            return Err(Error {
+                loc: a.loc,
+                ty: ErrorTy::VerifError,
+                desc: format!("expected expression `{}`, found nothing", a.rep,),
+            });
         }
 
         if !((proof.is_empty() && res.iter().any(|h| is_eq(h, &a.rep)))
@@ -257,8 +265,12 @@ fn replace(m: &HashMap<String, Expr>, succed: &mut Expr) {
     }
 }
 
-fn index(r: &[Expr], idxs: &[usize]) -> Vec<Expr> {
-    idxs.iter().map(|&i| r[i].clone()).collect()
+fn index(r: &[Expr], idxs: &[usize], loc: Loc) -> Result<Vec<Expr>, Error> {
+    if let Some(i) = idxs.iter().find(|&&i| i >= r.len()) {
+        Err(Error {loc, ty: ErrorTy::VerifError, desc: format!("invocation requires hypothetical with index {} while only {} hypothetical(s) have been inferred yet", i, r.len())})
+    } else {
+        Ok(idxs.iter().map(|&i| r[i].clone()).collect())
+    }
 }
 
 fn vars_to_string(v: Vec<String>) -> String {
