@@ -267,9 +267,19 @@ fn replace(m: &HashMap<String, Expr>, succed: &mut Expr) {
 
 fn index(r: &[Expr], idxs: &[usize], loc: Loc) -> Result<Vec<Expr>, Error> {
     if let Some(i) = idxs.iter().find(|&&i| i >= r.len()) {
-        Err(Error {loc, ty: ErrorTy::VerifError, desc: format!("invocation requires hypothetical with index {} while only {} hypothetical(s) have been inferred yet", i, r.len())})
+        Err(Error {
+            loc,
+            ty: ErrorTy::VerifError,
+            desc: format!("invocation requires hypothetical with index {} while only {} hypothetical(s) have been inferred yet", i, r.len()),
+        })
     } else {
-        Ok(idxs.iter().map(|&i| r[i].clone()).collect())
+        Ok(idxs
+            .iter()
+            .map(|&i| {
+                let last = r.len() - 1;
+                r[last - i].clone()
+            })
+            .collect())
     }
 }
 

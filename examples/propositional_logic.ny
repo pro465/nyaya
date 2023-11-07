@@ -6,9 +6,9 @@ axiom mp :: [P, impl(P, Q) |- Q]
 theorem p_impl_p :: (P) :: [|- impl(P, P)] {
     a2(P, impl(P, P))
     a3(P, impl(P, P), P)
-    mp[0, 1]
+    mp[1, 0]
     a2(P, P)
-    mp[3, 2]
+    mp[0, 1]
 }
 
 
