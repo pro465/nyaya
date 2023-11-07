@@ -27,37 +27,37 @@ axiom invleft :: (A) :: [|- eq(apply(mul, inv(A), A), e)]
 axiom assoc :: (A, B, C) :: [|- eq(apply(mul, apply(mul, A, B), C), apply(mul, A, apply(mul, B, C)))]
 
 theorem invright :: (A) :: [|- eq(apply(mul, A, inv(A)), e)] {
-    idleft(A)                                            |- eq(apply(mul, e, A), A)
-    eq_symm[0]                                           |- eq(A, apply(mul, e, A))
+    idleft(A)
+    eq_symm[0]
     eq_con2[0](mul, inv(A))                              |- eq(apply(mul, A, inv(A)), apply(mul, apply(mul, e, A), inv(A)))
-    invleft(inv(A))                                      |- eq(apply(mul, inv(inv(A)), inv(A)), e)
-    eq_symm[0]                                           |- eq(e, apply(mul, inv(inv(A)), inv(A)))
+    invleft(inv(A))
+    eq_symm[0]
     eq_con2[0](mul, A)                                   |- eq(apply(mul, e, A), apply(mul, apply(mul, inv(inv(A)), inv(A)), A))
-    assoc(inv(inv(A)), inv(A), A)                        |- eq(apply(mul, apply(mul, inv(inv(A)), inv(A)), A), apply(mul, inv(inv(A)), apply(mul, inv(A), A)))
+    assoc(inv(inv(A)), inv(A), A)
     eq_tran[1, 0]                                        |- eq(apply(mul, e, A), apply(mul, inv(inv(A)), apply(mul, inv(A), A)))
-    invleft(A)                                           |- eq(apply(mul, inv(A), A), e)
-    eq_con1[0](mul, inv(inv(A)))                         |- eq(apply(mul, inv(inv(A)), apply(mul, inv(A), A)), apply(mul, inv(inv(A)), e))
+    invleft(A)
+    eq_con1[0](mul, inv(inv(A)))
     eq_tran[2, 0]                                        |- eq(apply(mul, e, A), apply(mul, inv(inv(A)), e))
-    eq_con2[0](mul, inv(A))                              |- eq(apply(mul, apply(mul, e, A), inv(A)), apply(mul, apply(mul, inv(inv(A)), e), inv(A)))
+    eq_con2[0](mul, inv(A))
     eq_tran[9, 0]                                        |- eq(apply(mul, A, inv(A)), apply(mul, apply(mul, inv(inv(A)), e), inv(A)))
-    assoc(inv(inv(A)), e, inv(A))                        |- eq(apply(mul, apply(mul, inv(inv(A)), e), inv(A)), apply(mul, inv(inv(A)), apply(mul, e, inv(A))))
+    assoc(inv(inv(A)), e, inv(A))
     eq_tran[1, 0]                                        |- eq(apply(mul, A, inv(A)), apply(mul, inv(inv(A)), apply(mul, e, inv(A))))
-    idleft(inv(A))                                       |- eq(apply(mul, e, inv(A)), inv(A))
-    eq_con1[0](mul, inv(inv(A)))                         |- eq(apply(mul, inv(inv(A)), apply(mul, e, inv(A))), apply(mul, inv(inv(A)), inv(A)))
+    idleft(inv(A))
+    eq_con1[0](mul, inv(inv(A)))
     eq_tran[2, 0]                                        |- eq(apply(mul, A, inv(A)), apply(mul, inv(inv(A)), inv(A)))
     eq_tran[0, 14]                                       |- eq(apply(mul, A, inv(A)), e)
 }
 
 theorem idright :: (A) :: [|- eq(apply(mul, A, e), A)] {
-    invleft(A)                                           |- eq(apply(mul, inv(A), A), e)
-    eq_symm[0]                                           |- eq(e, apply(mul, inv(A), A))
+    invleft(A)
+    eq_symm[0]
     eq_con1[0](mul, A)                                   |- eq(apply(mul, A, e), apply(mul, A, apply(mul, inv(A), A)))
-    assoc(A, inv(A), A)                                  |- eq(apply(mul, apply(mul, A, inv(A)), A), apply(mul, A, apply(mul, inv(A), A)))
-    eq_symm[0]                                           |- eq(apply(mul, A, apply(mul, inv(A), A)), apply(mul, apply(mul, A, inv(A)), A))
+    assoc(A, inv(A), A)
+    eq_symm[0]
     eq_tran[2, 0]                                        |- eq(apply(mul, A, e), apply(mul, apply(mul, A, inv(A)), A))
-    invright(A)                                          |- eq(apply(mul, A, inv(A)), e)
-    eq_con2[0](mul, A)                                   |- eq(apply(mul, apply(mul, A, inv(A)), A), apply(mul, e, A))
+    invright(A)
+    eq_con2[0](mul, A)
     eq_tran[2, 0]                                        |- eq(apply(mul, A, e), apply(mul, e, A))
-    idleft(A)                                            |- eq(apply(mul, e, A), A)
+    idleft(A)
     eq_tran[1, 0]                                        |- eq(apply(mul, A, e), A)
 }
