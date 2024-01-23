@@ -61,7 +61,7 @@ TODO
 
 TODO
 
-# Checked Intermediate Results
+# Explicit Intermediate Results
 
 TODO
 
