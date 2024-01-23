@@ -43,4 +43,34 @@ where `P` and `Q` are any syntactcally valid expression.
 note that even though `impl` here looks like a function, it does not have to be. It could easily represent a property, a relation or even just
 syntactical information (e.g., `free_var(x, S)` could represent the information that `x` is a free "variable" in `S`.)
 
-TODO theorems, pattern matching & arguments. (perhaps describe valid expressions too?)
+
+# Valid Expressions & Pattern Matching
+
+In the above section, we said that `P` could match any "valid expression". You are probably wondering what constitues a valid expression.
+
+Basically, a valid expression could be a constant (`e`), a variable (`P`), or a 
+"function"/"property" of other valid expressions (`f(e)`, `impl(P, Q)`, `impl(p, not(R))`, etc.)
+
+TODO explain pattern matching
+
+# Theorems
+
+TODO
+
+# Arguments
+
+TODO
+
+# Checked Intermediate Results
+
+TODO
+
+# Comments
+
+Comments start with `#` and continue till the end of the line.
+
+For example: 
+```
+# this axiom gives me THE ULTIMATE POWER
+axion POWER :: (P) :: [|- P]
+```
