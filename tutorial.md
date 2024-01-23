@@ -103,15 +103,15 @@ theorem is proved. You could also think of it as a machine-checked proof sketch.
 
 You write an EIR like this:
 ```
-<use of axiom or theorem>  [|- <result derived from the axiom or theorem>]
+<use of axiom or theorem>  |- <result derived from the axiom or theorem>
 ```
 
 For example:
 
 ```
 theorem very_weird_theorem :: [impl(eq(p, q), eq(q, r)), eq(q, p) |- eq(q, r)] {
-    eq_symmetry[0]            [|- eq(p, q)]
-    modus_ponens[0, 2]        [|- eq(q, r)]
+    eq_symmetry[0]            |- eq(p, q)
+    modus_ponens[0, 2]        |- eq(q, r)
 }
 ```
 
