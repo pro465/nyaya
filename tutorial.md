@@ -98,7 +98,25 @@ TODO
 
 # Explicit Intermediate Results
 
-TODO
+sometimes writing intermediate steps' results can be helpful for the reader to get a rough idea of how a 
+theorem is proved. You could also think of it as a machine-checked proof sketch.
+
+You write an EIR like this:
+```
+<use of axiom or theorem>  [|- <result derived from the axiom or theorem>]
+```
+
+For example:
+
+```
+theorem very_weird_theorem :: [impl(eq(p, q), eq(q, r)), eq(q, p) |- eq(q, r)] {
+    eq_symmetry[0]            [|- eq(p, q)]
+    modus_ponens[0, 2]        [|- eq(q, r)]
+}
+```
+
+the nyaya checker also check if the results of the steps actually match with the EIRs if any, so the reader can rest assured that 
+the EIRs are accurate and/or not lying, unlike comments.
 
 # Comments
 
